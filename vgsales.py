@@ -1,4 +1,5 @@
 from grafo import Grafo
+from consoleTypeInference import consoleTypeInference
 
 # menu
 def menu():
@@ -6,7 +7,10 @@ def menu():
     print("1. Load Game Sales File")
     print("2. List all Tuples")
     print("3. Check Games List")
-    print("4. Listar jogos por plataforma")
+    print("4. Check Games per Platform")
+    print("5. Add new Game Record")
+    print("6. Remove Game Record")
+    print("7. Add Type Inference")
     print("0. Sair")
     return int(input("Opcao: "))
 
@@ -29,14 +33,35 @@ def checkGamesList():
     _graph.printTriples(triples)
 
 def gamesPerPlatform():
-    t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', '?platform')])
-    _graph.printList(t)
+    platform = input("Platform Tag: ")
+    t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
+    _graph.printResults(t)
 
+def addNewGameRecord():
+    print("Game Data Triple:")
+    sub = input("Subject: ")
+    pred = input("Predicate: ")
+    obj = input("Object: ")
+    _graph.add(sub, pred, obj)
+
+def removetriple():
+    print("Remove Triple")
+    sub = input("Subject: ")
+    if len(sub) == 0: sub = None
+    pred = input("Predicate: ")
+    if len(pred) == 0: pred = None
+    obj = input("Object: ")
+    if len(obj) == 0: obj = None
+    _graph.remove(sub, pred, obj)
+
+def addTypeInference():
+    cType = consoleTypeInference()
+    _graph.applyinference(cType)
 
 # inicio do modulo
 if __name__ == "__main__":
     # tuplo de referências das funções para cada opção do menu
-    _funcs = (loadGameSalesFile, listAllTuples, checkGamesList,gamesPerPlatform)
+    _funcs = (loadGameSalesFile, listAllTuples, checkGamesList, gamesPerPlatform, addNewGameRecord, removetriple, addTypeInference)
     _graph = Grafo()
     while(True):
         op = menu()

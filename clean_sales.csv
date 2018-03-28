@@ -1,0 +1,200 @@
+1,Name,Wii Sports
+2,Name,Super Mario Bros.
+3,Name,Mario Kart Wii
+4,Name,Wii Sports Resort
+5,Name,Pokemon Red/Pokemon Blue
+6,Name,Tetris
+7,Name,New Super Mario Bros.
+8,Name,Wii Play
+9,Name,New Super Mario Bros. Wii
+10,Name,Duck Hunt
+11,Name,Nintendogs
+12,Name,Mario Kart DS
+13,Name,Pokemon Gold/Pokemon Silver
+14,Name,Wii Fit
+15,Name,Wii Fit Plus
+16,Name,Kinect Adventures!
+17,Name,Grand Theft Auto V
+18,Name,Grand Theft Auto: San Andreas
+19,Name,Super Mario World
+20,Name,Brain Age: Train Your Brain in Minutes a Day
+1,Platform,Wii
+2,Platform,NES
+3,Platform,Wii
+4,Platform,Wii
+5,Platform,GB
+6,Platform,GB
+7,Platform,DS
+8,Platform,Wii
+9,Platform,Wii
+10,Platform,NES
+11,Platform,DS
+12,Platform,DS
+13,Platform,GB
+14,Platform,Wii
+15,Platform,Wii
+16,Platform,X360
+17,Platform,PS3
+18,Platform,PS2
+19,Platform,SNES
+20,Platform,DS
+1,Year,2006
+2,Year,1985
+3,Year,2008
+4,Year,2009
+5,Year,1996
+6,Year,1989
+7,Year,2006
+8,Year,2006
+9,Year,2009
+10,Year,1984
+11,Year,2005
+12,Year,2005
+13,Year,1999
+14,Year,2007
+15,Year,2009
+16,Year,2010
+17,Year,2013
+18,Year,2004
+19,Year,1990
+20,Year,2005
+1,Genre,Sports
+2,Genre,Platform
+3,Genre,Racing
+4,Genre,Sports
+5,Genre,Role-Playing
+6,Genre,Puzzle
+7,Genre,Platform
+8,Genre,Misc
+9,Genre,Platform
+10,Genre,Shooter
+11,Genre,Simulation
+12,Genre,Racing
+13,Genre,Role-Playing
+14,Genre,Sports
+15,Genre,Sports
+16,Genre,Misc
+17,Genre,Action
+18,Genre,Action
+19,Genre,Platform
+20,Genre,Misc
+1,Publisher,Nintendo
+2,Publisher,Nintendo
+3,Publisher,Nintendo
+4,Publisher,Nintendo
+5,Publisher,Nintendo
+6,Publisher,Nintendo
+7,Publisher,Nintendo
+8,Publisher,Nintendo
+9,Publisher,Nintendo
+10,Publisher,Nintendo
+11,Publisher,Nintendo
+12,Publisher,Nintendo
+13,Publisher,Nintendo
+14,Publisher,Nintendo
+15,Publisher,Nintendo
+16,Publisher,Microsoft Game Studios
+17,Publisher,Take-Two Interactive
+18,Publisher,Take-Two Interactive
+19,Publisher,Nintendo
+20,Publisher,Nintendo
+1,NA_Sales,41.49
+2,NA_Sales,29.08
+3,NA_Sales,15.85
+4,NA_Sales,15.75
+5,NA_Sales,11.27
+6,NA_Sales,23.2
+7,NA_Sales,11.38
+8,NA_Sales,14.03
+9,NA_Sales,14.59
+10,NA_Sales,26.93
+11,NA_Sales,9.07
+12,NA_Sales,9.81
+13,NA_Sales,9.0
+14,NA_Sales,8.94
+15,NA_Sales,9.09
+16,NA_Sales,14.97
+17,NA_Sales,7.01
+18,NA_Sales,9.43
+19,NA_Sales,12.78
+20,NA_Sales,4.75
+1,EU_Sales,29.02
+2,EU_Sales,3.58
+3,EU_Sales,12.88
+4,EU_Sales,11.01
+5,EU_Sales,8.89
+6,EU_Sales,2.26
+7,EU_Sales,9.23
+8,EU_Sales,9.2
+9,EU_Sales,7.06
+10,EU_Sales,0.63
+11,EU_Sales,11.0
+12,EU_Sales,7.57
+13,EU_Sales,6.18
+14,EU_Sales,8.03
+15,EU_Sales,8.59
+16,EU_Sales,4.94
+17,EU_Sales,9.27
+18,EU_Sales,0.4
+19,EU_Sales,3.75
+20,EU_Sales,9.26
+1,JP_Sales,3.77
+2,JP_Sales,6.81
+3,JP_Sales,3.79
+4,JP_Sales,3.28
+5,JP_Sales,10.22
+6,JP_Sales,4.22
+7,JP_Sales,6.5
+8,JP_Sales,2.93
+9,JP_Sales,4.7
+10,JP_Sales,0.28
+11,JP_Sales,1.93
+12,JP_Sales,4.13
+13,JP_Sales,7.2
+14,JP_Sales,3.6
+15,JP_Sales,2.53
+16,JP_Sales,0.24
+17,JP_Sales,0.97
+18,JP_Sales,0.41
+19,JP_Sales,3.54
+20,JP_Sales,4.16
+1,Other_Sales,8.46
+2,Other_Sales,0.77
+3,Other_Sales,3.31
+4,Other_Sales,2.96
+5,Other_Sales,1.0
+6,Other_Sales,0.58
+7,Other_Sales,2.9
+8,Other_Sales,2.85
+9,Other_Sales,2.26
+10,Other_Sales,0.47
+11,Other_Sales,2.75
+12,Other_Sales,1.92
+13,Other_Sales,0.71
+14,Other_Sales,2.15
+15,Other_Sales,1.79
+16,Other_Sales,1.67
+17,Other_Sales,4.14
+18,Other_Sales,10.57
+19,Other_Sales,0.55
+20,Other_Sales,2.05
+1,Global_Sales,82.74
+2,Global_Sales,40.24
+3,Global_Sales,35.82
+4,Global_Sales,33.0
+5,Global_Sales,31.37
+6,Global_Sales,30.26
+7,Global_Sales,30.01
+8,Global_Sales,29.02
+9,Global_Sales,28.62
+10,Global_Sales,28.31
+11,Global_Sales,24.76
+12,Global_Sales,23.42
+13,Global_Sales,23.1
+14,Global_Sales,22.72
+15,Global_Sales,22.0
+16,Global_Sales,21.82
+17,Global_Sales,21.4
+18,Global_Sales,20.81
+19,Global_Sales,20.61
+20,Global_Sales,20.22

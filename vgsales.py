@@ -1,6 +1,7 @@
 from grafo import Grafo
 from consoleTypeInference import consoleTypeInference
 
+
 # menu
 def menu():
     print("*** MENU ***")
@@ -12,30 +13,37 @@ def menu():
     print("6. Remove Game Record")
     print("7. Add Type Inference")
     print("0. Sair")
-    return int(input("Opcao: "))
+    return int(input("Option: "))
+
 
 def run(op):
-    _funcs[op-1]()
+    _funcs[op - 1]()
+
 
 def loadGameSalesFile():
     file = input("File Name: ")
-    _graph.load(file)
+    _graph.load('data/' + file)
+
 
 def listAllTuples():
     _graph.printAllTriples()
 
-def checkGamesList():
-    triples = _graph.triples(None, 'Name', None)
-    _graph.printTriples(triples)
 
 def checkGamesList():
     triples = _graph.triples(None, 'Name', None)
     _graph.printTriples(triples)
+
+
+def checkGamesList():
+    triples = _graph.triples(None, 'Name', None)
+    _graph.printTriples(triples)
+
 
 def gamesPerPlatform():
     platform = input("Platform Tag: ")
     t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
     _graph.printResults(t)
+
 
 def addNewGameRecord():
     print("Game Data Triple:")
@@ -43,6 +51,7 @@ def addNewGameRecord():
     pred = input("Predicate: ")
     obj = input("Object: ")
     _graph.add(sub, pred, obj)
+
 
 def removetriple():
     print("Remove Triple")
@@ -54,16 +63,19 @@ def removetriple():
     if len(obj) == 0: obj = None
     _graph.remove(sub, pred, obj)
 
+
 def addTypeInference():
     cType = consoleTypeInference()
     _graph.applyinference(cType)
 
+
 # inicio do modulo
 if __name__ == "__main__":
     # tuplo de referências das funções para cada opção do menu
-    _funcs = (loadGameSalesFile, listAllTuples, checkGamesList, gamesPerPlatform, addNewGameRecord, removetriple, addTypeInference)
+    _funcs = (loadGameSalesFile, listAllTuples, checkGamesList, gamesPerPlatform, addNewGameRecord, removetriple,
+              addTypeInference)
     _graph = Grafo()
-    while(True):
+    while (True):
         op = menu()
         if op == 0:
             break

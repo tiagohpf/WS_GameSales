@@ -81,7 +81,7 @@ class Grafo:
 
     # guarda os triplos num ficheiro csv
     def save(self, filename):
-        f = open(filename, "w", encoding='utf-8')
+        f = open(filename, "w", encoding='utf-8', newline='')
         writer = csv.writer(f)
         for sub, pred, obj in self.triples(None, None, None):
             writer.writerow([sub, pred, obj])
@@ -136,13 +136,23 @@ class Grafo:
         return bindings
 
     # aplica inferencia ao grafo
-    def applyinference(self, rule):
+    def applyConsoleTypeInference(self, rule):
         queries = rule.getQueries()
         bindings = []
         for query in queries:
             bindings += self.query(query)
         for b in bindings:
             new_triples = rule.makeTriples(b['id'], b['plat']);
+            for s, p, o in new_triples:
+                self.add(s, p, o)
+
+    def applyMainRegionInference(self, rule):
+        queries = rule.getQueries()
+        bindings = []
+        for query in queries:
+            bindings += self.query(query)
+        for b in bindings:
+            new_triples = rule.makeTriples(b['id'], b['NA'], b['EU'], b['JP'], b['Other']);
             for s, p, o in new_triples:
                 self.add(s, p, o)
 

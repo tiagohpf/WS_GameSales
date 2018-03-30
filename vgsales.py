@@ -1,6 +1,10 @@
 from grafo import Grafo
-from consoleTypeInference import consoleTypeInference
-
+from consoleTypeRule import consoleTypeRule
+from mainRegionRule import mainRegionRule
+from graphviz import Source
+import re
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 
 # menu
 def menu():
@@ -11,7 +15,9 @@ def menu():
     print("4. Check Games per Platform")
     print("5. Add new Game Record")
     print("6. Remove Game Record")
-    print("7. Add Type Inference")
+    print("7. Add Console Type Inference")
+    print("8. Add Main Region Inference")
+    print("9. Save Triples in File")
     print("0. Sair")
     return int(input("Option: "))
 
@@ -24,19 +30,23 @@ def loadGameSalesFile():
     file = input("File Name: ")
     _graph.load('data/' + file)
 
+def saveGameSalesData():
+    file = input("File Name: ")
+    _graph.save('data/' + file)
 
 def listAllTuples():
     _graph.printAllTriples()
-
-
-def checkGamesList():
-    triples = _graph.triples(None, 'Name', None)
-    _graph.printTriples(triples)
-
+    triples = _graph.triples(None,None,None)
+    dot = triples2dot(triples)
+    g = Source(dot, "relations.gv", "dotout", "pdf", "neato")
+    g.render(view=True)
 
 def checkGamesList():
     triples = _graph.triples(None, 'Name', None)
     _graph.printTriples(triples)
+    dot = triples2dot(triples)
+    g = Source(dot, "relations.gv", "dotout", "pdf", "neato")
+    g.render(view=True)
 
 
 def gamesPerPlatform():
@@ -65,15 +75,29 @@ def removetriple():
 
 
 def addTypeInference():
-    cType = consoleTypeInference()
-    _graph.applyinference(cType)
+    cType = consoleTypeRule()
+    _graph.applyConsoleTypeInference(cType)
 
+def addRegionInference():
+    mRegion = mainRegionRule()
+    _graph.applyMainRegionInference(mRegion)
+
+def triples2dot(triples):
+    dot = \
+""" 
+graph "grafo" { 
+overlap = "scale"; 
+"""
+    for s, p, o in triples:
+        dot = dot + ('%s -- %s [label=%s]\n' % (re.sub('[^A-Za-z0-9]+', '', s), re.sub('[^A-Za-z0-9]+', '', o), re.sub('[^A-Za-z0-9]+', '', p)))
+    dot = dot + "}"
+    return dot
 
 # inicio do modulo
 if __name__ == "__main__":
     # tuplo de referências das funções para cada opção do menu
     _funcs = (loadGameSalesFile, listAllTuples, checkGamesList, gamesPerPlatform, addNewGameRecord, removetriple,
-              addTypeInference)
+              addTypeInference, addRegionInference, saveGameSalesData)
     _graph = Grafo()
     while (True):
         op = menu()

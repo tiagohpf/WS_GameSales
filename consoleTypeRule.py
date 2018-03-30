@@ -1,7 +1,7 @@
 from inference import InferenceRule
 
 
-class consoleTypeInference(InferenceRule):
+class consoleTypeRule(InferenceRule):
 
     def getQueries(self):
         consoleQuery = [('?id', 'Platform','?plat')]

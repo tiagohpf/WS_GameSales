@@ -10,10 +10,10 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 def menu():
     print("*** MENU ***")
     print("1. Load Game Sales File")
-    print("2. List all Tuples")
+    print("2. List All Tuples")
     print("3. Check Games List")
     print("4. Check Games per Platform")
-    print("5. Add new Game Record")
+    print("5. Add New Game Record")
     print("6. Remove Game Record")
     print("7. Add Console Type Inference")
     print("8. Add Main Region Inference")

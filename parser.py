@@ -2,7 +2,7 @@ import csv
 
 import pandas as pd
 
-csv_file = pd.read_csv('data/vgsalesTop20.csv')
+csv_file = pd.read_csv('data/vgsalesTop100.csv')
 csv_file.drop_duplicates(inplace=True, keep='first')
 relations = []
 triples = []
@@ -17,7 +17,7 @@ for header in relations:
             counter += 1
     counter = 1
 
-f = open('data/clean_sales.csv', "w", encoding='utf-8')
+f = open('clean_data/clean_sales100.csv', "w", encoding='utf-8')
 writer = csv.writer(f)
 for sub, pred, obj in triples:
     writer.writerow([sub, pred, obj])

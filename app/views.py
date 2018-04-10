@@ -107,17 +107,30 @@ def file_manager(request):
 def list_all_tuples(request):
     template = loader.get_template('all_tuples.html')
     context = {
-        'title': '1. List All Tuples',
-        'breadcumb': 'List All Tuples',
         'triples': _graph.triples(None, None, None)
     }
     return HttpResponse(template.render(context, request))
 
 
 def add_new_game_record(request):
-    template = loader.get('add_new_game.html')
-    context = {
-        'title': '4. Add New Game Record',
-        'breadcumb': 'Add New Game Record',
-    }
+    template = loader.get_template('add_new_game.html')
+    if ('subject' and 'predicate' and 'object') in request.POST:
+        sub = request.POST['subject']
+        pred = request.POST['predicate']
+        obj = request.POST['object']
+        if sub and pred and obj:
+            _graph.add(sub, pred, obj)
+            context = {
+                'error': False,
+                'message': 'Triple successfully added!'
+            }
+        else:
+            context = {
+                'error': True,
+                'message': 'Fill all the fields!'
+            }
+    else:
+        context = {
+            'error': False
+        }
     return HttpResponse(template.render(context, request))

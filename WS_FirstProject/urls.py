@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.file_manager, name='index'),
     path('all_tuples/', app.views.list_all_tuples, name='all_tuples'),
-    path('new_game', app.views.add_new_game_record, name='new_game')
+    path('new_game', app.views.add_new_game_record, name='new_game'),
+    path('remove_game', app.views.remove_game, name='remove_game')
 ]

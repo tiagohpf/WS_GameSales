@@ -15,17 +15,6 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 
 _graph = Grafo()
 
-
-def loadGameSalesFile():
-    file = input("File Name: ")
-    _graph.load('data/' + file)
-
-
-def saveGameSalesData():
-    file = input("File Name: ")
-    _graph.save('data/' + file)
-
-
 """def listAllTuples():
     _graph.printAllTriples()
     triples = _graph.triples(None, None, None)
@@ -46,14 +35,6 @@ def gamesPerPlatform():
     platform = input("Platform Tag: ")
     t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
     _graph.printResults(t)
-
-
-def addNewGameRecord():
-    print("Game Data Triple:")
-    sub = input("Subject: ")
-    pred = input("Predicate: ")
-    obj = input("Object: ")
-    _graph.add(sub, pred, obj)
 
 
 def removetriple():
@@ -119,10 +100,45 @@ def add_new_game_record(request):
         pred = request.POST['predicate']
         obj = request.POST['object']
         if sub and pred and obj:
-            _graph.add(sub, pred, obj)
+            if len(_graph.triples(sub, pred, obj)) > 0:
+                context = {
+                    'error': True,
+                    'message': 'Tuple already exists'
+                }
+            else:
+                _graph.add(sub, pred, obj)
+                context = {
+                    'error': False,
+                    'message': 'Triple successfully added'
+                }
+        else:
+            context = {
+                'error': True,
+                'message': 'Fill all the fields'
+            }
+    else:
+        context = {'error': False}
+    return HttpResponse(template.render(context, request))
+
+
+def remove_game(request):
+    template = loader.get_template('remove_game.html')
+    if ('subject' and 'predicate' and 'object') in request.POST:
+        sub = request.POST['subject']
+        pred = request.POST['predicate']
+        obj = request.POST['object']
+        if sub and pred and obj:
+            if sub == 'None':
+                sub = None
+            if pred == 'None':
+                pred = None
+            if obj == 'None':
+                obj = None
+            number = len(_graph.triples(sub, pred, obj))
+            _graph.remove(sub, pred, obj)
             context = {
                 'error': False,
-                'message': 'Triple successfully added!'
+                'message': str(number) + ' tuples were removed'
             }
         else:
             context = {
@@ -130,7 +146,5 @@ def add_new_game_record(request):
                 'message': 'Fill all the fields!'
             }
     else:
-        context = {
-            'error': False
-        }
+        context = {'error': False}
     return HttpResponse(template.render(context, request))

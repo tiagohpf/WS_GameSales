@@ -103,10 +103,21 @@ def file_manager(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
-def msg_tuples(request):
+
+def list_all_tuples(request):
     template = loader.get_template('all_tuples.html')
     context = {
         'title': '1. List All Tuples',
-        'breadcumb': 'List All Tuples'
+        'breadcumb': 'List All Tuples',
+        'triples': _graph.triples(None, None, None)
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def add_new_game_record(request):
+    template = loader.get('add_new_game.html')
+    context = {
+        'title': '4. Add New Game Record',
+        'breadcumb': 'Add New Game Record',
     }
     return HttpResponse(template.render(context, request))

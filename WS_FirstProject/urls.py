@@ -21,7 +21,11 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.file_manager, name='index'),
-    path('all_tuples/', app.views.list_all_tuples, name='all_tuples'),
+    path('all_tuples', app.views.list_all_tuples, name='all_tuples'),
+    path('games_list', app.views.check_games_list, name='games_list'),
+    path('games_platform', app.views.check_games_platform, name='games_platform'),
     path('new_game', app.views.add_new_game_record, name='new_game'),
-    path('remove_game', app.views.remove_game, name='remove_game')
+    path('remove_game', app.views.remove_game, name='remove_game'),
+    path('console_inference', app.views.add_console_inference, name='console_inference'),
+    path('region_inference', app.views.add_region_inference, name='region_inference')
 ]

@@ -6,13 +6,13 @@
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Check Games List">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={% url 'games_list' %}>
             2.
             <span class="nav-link-text">Check Games List</span>
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Check Games per Platform">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={% url 'games_platform' %}>
             3.
             <span class="nav-link-text">Check Games per Platform</span>
         </a>
@@ -30,13 +30,13 @@
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Console Type Inference">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={% url 'console_inference' %}>
             6.
             <span class="nav-link-text">Add Console Type Inference</span>
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Main Region Inference">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={% url 'region_inference' %} >
             7.
             <span class="nav-link-text">Add Main Region Inference</span>
         </a>

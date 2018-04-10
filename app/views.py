@@ -37,17 +37,6 @@ def gamesPerPlatform():
     _graph.printResults(t)
 
 
-def removetriple():
-    print("Remove Triple")
-    sub = input("Subject: ")
-    if len(sub) == 0: sub = None
-    pred = input("Predicate: ")
-    if len(pred) == 0: pred = None
-    obj = input("Object: ")
-    if len(obj) == 0: obj = None
-    _graph.remove(sub, pred, obj)
-
-
 def addTypeInference():
     cType = consoleTypeRule()
     _graph.applyConsoleTypeInference(cType)
@@ -90,6 +79,18 @@ def list_all_tuples(request):
     context = {
         'triples': _graph.triples(None, None, None)
     }
+    return HttpResponse(template.render(context, request))
+
+
+def check_games_list(request):
+    template = loader.get_template('games_list.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def check_games_platform(request):
+    template = loader.get_template('games_platform.html')
+    context = {}
     return HttpResponse(template.render(context, request))
 
 
@@ -147,4 +148,16 @@ def remove_game(request):
             }
     else:
         context = {'error': False}
+    return HttpResponse(template.render(context, request))
+
+
+def add_console_inference(request):
+    template = loader.get_template('console_type_inference.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def add_region_inference(request):
+    template = loader.get_template('main_region_inference.html')
+    context = {}
     return HttpResponse(template.render(context, request))

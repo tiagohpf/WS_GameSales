@@ -28,7 +28,7 @@ def run(op):
 
 def loadGameSalesFile():
     file = input("File Name: ")
-    _graph.load('data/' + file)
+    _graph.load('clean_data/' + file)
 
 def saveGameSalesData():
     file = input("File Name: ")

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import loader
 from django.http import HttpResponse
+from graphviz import Source
 
 from consoleTypeRule import consoleTypeRule
 from grafo import Grafo
@@ -74,13 +75,25 @@ def list_all_tuples(request):
 
 def check_games_list(request):
     template = loader.get_template('games_list.html')
-    context = {}
+    context = {
+        'triples': _graph.triples(None, 'Name', None),
+        'dot': triples2dot(_graph.triples(None, 'Name', None)),
+        'g': Source(triples2dot(_graph.triples(None, 'Name', None)), "relations.gv", "dotout", "pdf", "neato")
+    }
     return HttpResponse(template.render(context, request))
 
 
 def check_games_platform(request):
     template = loader.get_template('games_platform.html')
-    context = {}
+    t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
+    triples = []
+    triplesOne = _graph.triples(None, None, platform);
+    for sub, pred, obj in triplesOne:
+        triples.append(_graph.triples(sub, 'Name', None))
+    context = {
+        'result': t,
+        'triples': triples
+                }
     return HttpResponse(template.render(context, request))
 
 

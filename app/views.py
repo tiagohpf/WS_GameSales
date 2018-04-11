@@ -11,7 +11,7 @@ import os
 
 from mainRegionRule import mainRegionRule
 
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
+#os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 
 _graph = Grafo()
 
@@ -35,16 +35,6 @@ def gamesPerPlatform():
     platform = input("Platform Tag: ")
     t = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
     _graph.printResults(t)
-
-
-def addTypeInference():
-    cType = consoleTypeRule()
-    _graph.applyConsoleTypeInference(cType)
-
-
-def addRegionInference():
-    mRegion = mainRegionRule()
-    _graph.applyMainRegionInference(mRegion)
 
 
 def triples2dot(triples):
@@ -144,7 +134,7 @@ def remove_game(request):
         else:
             context = {
                 'error': True,
-                'message': 'Fill all the fields!'
+                'message': 'Fill all the fields'
             }
     else:
         context = {'error': False}
@@ -153,11 +143,13 @@ def remove_game(request):
 
 def add_console_inference(request):
     template = loader.get_template('console_type_inference.html')
-    context = {}
+    cType = consoleTypeRule()
+    context = {'triples': _graph.applyConsoleTypeInference(cType)}
     return HttpResponse(template.render(context, request))
 
 
 def add_region_inference(request):
     template = loader.get_template('main_region_inference.html')
-    context = {}
+    rType = mainRegionRule()
+    context = {'triples': _graph.applyMainRegionInference(rType)}
     return HttpResponse(template.render(context, request))

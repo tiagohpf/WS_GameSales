@@ -9,4 +9,39 @@
             <h1>6. Add Console Type Inference</h1>
         </div>
     </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Data Table
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                        <th>Subject</th>
+                        <th>Predicate</th>
+                        <th>Object</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sub, pred, obj in triples %}
+                        <tr>
+                            <td>{{ sub }}</td>
+                            <td>{{ pred }}</td>
+                            <td>{{ obj }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Predicate</th>
+                        <th>Object</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted"></div>
+    </div>
 {% endblock container %}

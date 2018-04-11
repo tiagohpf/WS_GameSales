@@ -9,4 +9,74 @@
             <h1>3. Check Games Platform</h1>
         </div>
     </div>
+    <div class="container col-md-4">
+        <div class="card card-register mx-auto mt-2">
+            <div class="card-body align-content-center">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <input class="form-control" type="text" name="platform"
+                               placeholder="Enter Platform">
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-block"
+                           value="Submit"/>
+                </form>
+            </div>
+            <div class="card-footer">
+                {% if error %}
+                    <p style="color: red">{{ message }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-table"></i> Data Table
+                </div>
+                <div class="col-md-10">
+                    <form method="post" style="text-align: right">
+                        {% csrf_token %}
+                        <label for="downloader" class="btn btn-primary btn-sm">
+                            Download Graph
+                            <i class="fa fa-download"></i>
+                        </label>
+                        <input id="downloader" type="submit" name="download_graph" style="display: none">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Predicate</th>
+                        <th>Object</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sub, pred, obj in triples %}
+                        <tr>
+                            <td>{{ sub }}</td>
+                            <td>{{ pred }}</td>
+                            <td>{{ obj }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Predicate</th>
+                        <th>Object</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted"></div>
+    </div>
 {% endblock container %}

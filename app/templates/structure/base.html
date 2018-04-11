@@ -17,10 +17,10 @@
         {% block container %} {% endblock container %}
     </div>
     {% include "structure/footer.html" %}
+    {% include "structure/save_modal.html" %}
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
-    {% include "structure/logout_modal.html" %}
 </div>
 <script src={% static 'vendor/jquery/jquery.min.js' %}></script>
 <script src={% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}></script>

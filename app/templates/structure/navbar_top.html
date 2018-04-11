@@ -8,28 +8,12 @@
             </label>
             <input id="loader" type="file" name="load_file" style="display: none"
                    onchange="this.form.submit()">
-            <label for="loader" class="btn btn-primary mr-lg-4">
+            <label for="saver" class="btn btn-primary mr-lg-4">
                 Save
-                <i class="fa fa-save"></i>
+                <i class="fa fa-download"></i>
             </label>
-            <input id="saver" type="file" name="save_file" style="display: none"
-                   onchange="this.form.submit()"/>
+            <input id="saver" type="button" style="display: none"
+            data-toggle="modal" data-target="#exampleModal">
         </form>
-    </li>
-    <li class="nav-item">
-        <form class="form-inline my-2 my-lg-0 mr-lg-2">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for...">
-                <span class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
     </li>
 </ul>

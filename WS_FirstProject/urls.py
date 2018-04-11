@@ -20,7 +20,7 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.file_manager, name='index'),
+    path('', app.views.file_status, name='index'),
     path('all_tuples', app.views.list_all_tuples, name='all_tuples'),
     path('games_list', app.views.check_games_list, name='games_list'),
     path('games_platform', app.views.check_games_platform, name='games_platform'),

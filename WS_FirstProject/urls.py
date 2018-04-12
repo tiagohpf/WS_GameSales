@@ -27,5 +27,6 @@ urlpatterns = [
     path('new_game', app.views.add_new_game_record, name='new_game'),
     path('remove_game', app.views.remove_game, name='remove_game'),
     path('console_inference', app.views.add_console_inference, name='console_inference'),
-    path('region_inference', app.views.add_region_inference, name='region_inference')
+    path('region_inference', app.views.add_region_inference, name='region_inference'),
+    path('release_inference', app.views.add_release_inference, name='release_inference')
 ]

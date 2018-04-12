@@ -23,7 +23,7 @@ class Grafo:
 
     def remove(self, sub, pred, obj):
         for (delSub, delPred, delObj) in self.triples(sub, pred, obj):
-            self._removeFromIndex(self._spo, delSub,  delPred,  delObj)
+            self._removeFromIndex(self._spo, delSub, delPred, delObj)
 
     # remove os termos do índice
     def _removeFromIndex(self, index, sub, pred, obj):
@@ -153,6 +153,16 @@ class Grafo:
             bindings += self.query(query)
         for b in bindings:
             new_triples = rule.makeTriples(b['id'], b['NA'], b['EU'], b['JP'], b['Other']);
+            for s, p, o in new_triples:
+                self.add(s, p, o)
+
+    def applyReleaseYearInference(self, rule):
+        queries = rule.getQueries()
+        bindings = []
+        for query in queries:
+            bindings += self.query(query)
+        for b in bindings:
+            new_triples = rule.makeTriples(b['id'], b['id2'], b['year'], b['year2']);
             for s, p, o in new_triples:
                 self.add(s, p, o)
 

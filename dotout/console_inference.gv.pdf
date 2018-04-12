@@ -1,0 +1,9 @@
+ 
+        graph "grafo" { 
+        overlap = "scale"; 
+        1 -- Console [label=type]
+2 -- Console [label=type]
+3 -- Console [label=type]
+4 -- Console [label=type]
+5 -- Portable [label=type]
+}

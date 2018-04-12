@@ -1,0 +1,50 @@
+1,Name,Wii Sports
+2,Name,Super Mario Bros.
+3,Name,Mario Kart Wii
+4,Name,Wii Sports Resort
+5,Name,Pokemon Red/Pokemon Blue
+1,Platform,Wii
+2,Platform,NES
+3,Platform,Wii
+4,Platform,Wii
+5,Platform,GB
+1,Year,2006
+2,Year,1985
+3,Year,2008
+4,Year,2009
+5,Year,1996
+1,Genre,Sports
+2,Genre,Platform
+3,Genre,Racing
+4,Genre,Sports
+5,Genre,Role-Playing
+1,Publisher,Nintendo
+2,Publisher,Nintendo
+3,Publisher,Nintendo
+4,Publisher,Nintendo
+5,Publisher,Nintendo
+1,NA_Sales,41.49
+2,NA_Sales,29.08
+3,NA_Sales,15.85
+4,NA_Sales,15.75
+5,NA_Sales,11.27
+1,EU_Sales,29.02
+2,EU_Sales,3.58
+3,EU_Sales,12.88
+4,EU_Sales,11.01
+5,EU_Sales,8.89
+1,JP_Sales,3.77
+2,JP_Sales,6.81
+3,JP_Sales,3.79
+4,JP_Sales,3.28
+5,JP_Sales,10.22
+1,Other_Sales,8.46
+2,Other_Sales,0.77
+3,Other_Sales,3.31
+4,Other_Sales,2.96
+5,Other_Sales,1.0
+1,Global_Sales,82.74
+2,Global_Sales,40.24
+3,Global_Sales,35.82
+4,Global_Sales,33.0
+5,Global_Sales,31.37

@@ -1,8 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpRequest
 from django.template import loader
 from django.http import HttpResponse
-from graphviz import Source
 
 from consoleTypeRule import consoleTypeRule
 from grafo import Grafo
@@ -11,6 +8,7 @@ import re
 import os
 
 from mainRegionRule import mainRegionRule
+from laterReleaseRule import laterReleaseRule
 
 # os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 os.environ["PATH"] += os.pathsep + '/usr/local/lib/python3.6/dist-packages/graphviz'
@@ -172,16 +170,70 @@ def remove_game(request):
 def add_console_inference(request):
     context = manage_file(request)
     template = loader.get_template('console_type_inference.html')
-    cType = consoleTypeRule()
-    _graph.applyConsoleTypeInference(cType)
-    context.update({'triples': _graph.triples(None, 'type', None)})
-    return HttpResponse(template.render(context, request))
+    if 'download_graph' in request.POST:
+        g = Source(triples2dot(triples_platform), "console_inference.gv.pdf", "dotout", "pdf", "neato")
+        g.render(view=True)
+        with open('dotout/console_inference.gv.pdf', 'rb') as pdf:
+            response = HttpResponse(pdf.read())
+            response['content_type'] = 'application/pdf'
+            response['Content-Disposition'] = 'attachment;filename=console_inference.pdf'
+            return response
+    else:
+        triples_platform.clear()
+        cType = consoleTypeRule()
+        _graph.applyConsoleTypeInference(cType)
+        triples = _graph.triples(None, 'type', None)
+        for sub, pred, obj in triples:
+            triples_platform.append((sub, pred, obj))
+        context.update({'triples': triples})
+        return HttpResponse(template.render(context, request))
 
 
 def add_region_inference(request):
     context = manage_file(request)
     template = loader.get_template('main_region_inference.html')
-    rType = mainRegionRule()
-    _graph.applyMainRegionInference(rType)
-    context.update({'triples': _graph.triples(None, 'Main Region', None)})
-    return HttpResponse(template.render(context, request))
+    if 'download_graph' in request.POST:
+        g = Source(triples2dot(triples_platform), "region_inference.gv.pdf", "dotout", "pdf", "neato")
+        g.render(view=True)
+        with open('dotout/region_inference.gv.pdf', 'rb') as pdf:
+            response = HttpResponse(pdf.read())
+            response['content_type'] = 'application/pdf'
+            response['Content-Disposition'] = 'attachment;filename=region_inference.pdf'
+            return response
+    else:
+        triples_platform.clear()
+        rType = mainRegionRule()
+        _graph.applyMainRegionInference(rType)
+        triples = _graph.triples(None, 'Main Region', None)
+        for sub, pred, obj in triples:
+            triples_platform.append((sub, pred, obj))
+        context.update({'triples': triples})
+        return HttpResponse(template.render(context, request))
+
+
+def add_release_inference(request):
+    context = manage_file(request)
+    template = loader.get_template('release_year_inference.html')
+    if 'download_graph' in request.POST:
+        g = Source(triples2dot(triples_platform), "release_year_inference.gv.pdf", "dotout", "pdf", "neato")
+        g.render(view=True)
+        with open('dotout/release_year_inference.gv.pdf', 'rb') as pdf:
+            response = HttpResponse(pdf.read())
+            response['content_type'] = 'application/pdf'
+            response['Content-Disposition'] = 'attachment;filename=release_year_inference.pdf'
+            return response
+    else:
+        triples_platform.clear()
+        lType = laterReleaseRule()
+        _graph.applyReleaseYearInference(lType)
+        triples = []
+        for triple in _graph.triples(None, 'earlier released than', None):
+            triples.append(triple)
+        for triple in _graph.triples(None, 'later released than', None):
+            triples.append(triple)
+        for triple in _graph.triples(None, 'same year as', None):
+            triples.append(triple)
+        for sub, pred, obj in triples:
+            triples_platform.append((sub, pred, obj))
+        context.update({'triples': triples})
+        return HttpResponse(template.render(context, request))

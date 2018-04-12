@@ -1,0 +1,30 @@
+1,Name,Wii Sports
+2,Name,Super Mario Bros.
+3,Name,Mario Kart Wii
+1,Platform,Wii
+2,Platform,NES
+3,Platform,Wii
+1,Year,2006
+2,Year,1985
+3,Year,2008
+1,Genre,Sports
+2,Genre,Platform
+3,Genre,Racing
+1,Publisher,Nintendo
+2,Publisher,Nintendo
+3,Publisher,Nintendo
+1,NA_Sales,41.49
+2,NA_Sales,29.08
+3,NA_Sales,15.85
+1,EU_Sales,29.02
+2,EU_Sales,3.58
+3,EU_Sales,12.88
+1,JP_Sales,3.77
+2,JP_Sales,6.81
+3,JP_Sales,3.79
+1,Other_Sales,8.46
+2,Other_Sales,0.77
+3,Other_Sales,3.31
+1,Global_Sales,82.74
+2,Global_Sales,40.24
+3,Global_Sales,35.82

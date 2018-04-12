@@ -10,9 +10,9 @@ class laterReleaseRule(InferenceRule):
     def makeTriples(self, id1, id2, year1, year2):
         print(id1, id2, year1, year2)
         if (id1 != id2 and int(year1) > int(year2)):
-            return [(id1, 'earlier released than', id2)]
+            return [(id1, 'Earlier', id2)]
         elif (id1 != id2 and int(year1) < int(year2)):
-            return [(id1, 'later released than', id2)]
+            return [(id1, 'Later', id2)]
         elif (id1 != id2 and int(year1) == int(year2)):
-            return [(id1, 'same year as', id2)]
+            return [(id1, 'Same', id2)]
         return []

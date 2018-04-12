@@ -227,11 +227,11 @@ def add_release_inference(request):
         lType = laterReleaseRule()
         _graph.applyReleaseYearInference(lType)
         triples = []
-        for triple in _graph.triples(None, 'earlier released than', None):
+        for triple in _graph.triples(None, 'Earlier', None):
             triples.append(triple)
-        for triple in _graph.triples(None, 'later released than', None):
+        for triple in _graph.triples(None, 'Later', None):
             triples.append(triple)
-        for triple in _graph.triples(None, 'same year as', None):
+        for triple in _graph.triples(None, 'Same', None):
             triples.append(triple)
         for sub, pred, obj in triples:
             triples_platform.append((sub, pred, obj))

@@ -2,5 +2,6 @@
         graph "grafo" { 
         overlap = "scale"; 
         1 -- WiiSports [label=Name]
+2 -- SuperMarioBros [label=Name]
 3 -- MarioKartWii [label=Name]
 }

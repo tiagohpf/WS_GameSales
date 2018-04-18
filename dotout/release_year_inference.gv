@@ -1,0 +1,10 @@
+ 
+        graph "grafo" { 
+        overlap = "scale"; 
+        1 -- 2 [label=Earlier]
+3 -- 1 [label=Earlier]
+3 -- 2 [label=Earlier]
+1 -- 3 [label=Later]
+2 -- 1 [label=Later]
+2 -- 3 [label=Later]
+}

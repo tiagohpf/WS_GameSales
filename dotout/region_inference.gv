@@ -1,0 +1,7 @@
+ 
+        graph "grafo" { 
+        overlap = "scale"; 
+        1 -- Other [label=MainRegion]
+2 -- JP [label=MainRegion]
+3 -- JP [label=MainRegion]
+}

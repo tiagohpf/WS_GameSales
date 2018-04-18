@@ -65,7 +65,7 @@ def check_games_list(request):
     template = loader.get_template('games_list.html')
     triples = _graph.triples(None, 'Name', None)
     if 'download_graph' in request.POST:
-        g = Source(triples2dot(triples), "games_list.gv.pdf", "dotout", "pdf", "neato")
+        g = Source(triples2dot(triples), "games_list.gv", "dotout", "pdf", "neato")
         g.render(view=True)
         with open('dotout/games_list.gv.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read())
@@ -96,7 +96,7 @@ def check_games_platform(request):
                 'message': 'Insert the platform'
             })
     elif 'download_graph' in request.POST:
-        g = Source(triples2dot(triples_platform), "games_platform.gv.pdf", "dotout", "pdf", "neato")
+        g = Source(triples2dot(triples_platform), "games_platform.gv", "dotout", "pdf", "neato")
         g.render(view=True)
         with open('dotout/games_platform.gv.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read())
@@ -171,7 +171,7 @@ def add_console_inference(request):
     context = manage_file(request)
     template = loader.get_template('console_type_inference.html')
     if 'download_graph' in request.POST:
-        g = Source(triples2dot(triples_platform), "console_inference.gv.pdf", "dotout", "pdf", "neato")
+        g = Source(triples2dot(triples_platform), "console_inference.gv", "dotout", "pdf", "neato")
         g.render(view=True)
         with open('dotout/console_inference.gv.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read())
@@ -193,7 +193,7 @@ def add_region_inference(request):
     context = manage_file(request)
     template = loader.get_template('main_region_inference.html')
     if 'download_graph' in request.POST:
-        g = Source(triples2dot(triples_platform), "region_inference.gv.pdf", "dotout", "pdf", "neato")
+        g = Source(triples2dot(triples_platform), "region_inference.gv", "dotout", "pdf", "neato")
         g.render(view=True)
         with open('dotout/region_inference.gv.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read())
@@ -215,7 +215,7 @@ def add_release_inference(request):
     context = manage_file(request)
     template = loader.get_template('release_year_inference.html')
     if 'download_graph' in request.POST:
-        g = Source(triples2dot(triples_platform), "release_year_inference.gv.pdf", "dotout", "pdf", "neato")
+        g = Source(triples2dot(triples_platform), "release_year_inference.gv", "dotout", "pdf", "neato")
         g.render(view=True)
         with open('dotout/release_year_inference.gv.pdf', 'rb') as pdf:
             response = HttpResponse(pdf.read())

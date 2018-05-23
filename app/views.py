@@ -1,14 +1,14 @@
 from django.template import loader
 from django.http import HttpResponse
 
-from consoleTypeRule import consoleTypeRule
+from console_type_rule import consoleTypeRule
 from grafo import Grafo
 from graphviz import Source
 import re
 import os
 
-from mainRegionRule import mainRegionRule
-from laterReleaseRule import laterReleaseRule
+from main_region_rule import mainRegionRule
+from later_release_rule import laterReleaseRule
 
 # os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
 os.environ["PATH"] += os.pathsep + '/usr/local/lib/python3.6/dist-packages/graphviz'

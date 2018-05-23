@@ -1,0 +1,34 @@
+Wii,belongs,Nintendo
+Wii,release,2010
+NES,belongs,Nintendo
+NES,release,1996
+GB,belongs,Nintendo
+GB,release,1990
+DS,belongs,Nintendo
+DS,release,2005
+SNES,belongs,Nintendo
+SNES,release,1996
+X360,belongs,Microsoft Game Studios
+X360,release,2011
+PS3,belongs,Sony Computer Entertainment
+PS3,release,2012
+PS2,belongs,Sony Computer Entertainment
+PS2,release,2003
+GBA,belongs,Nintendo
+GBA,release,2000
+3DS,belongs,Nintendo
+3DS,release,2012
+PS4,belongs,Sony Computer Entertainment
+PS4,release,2015
+N64,belongs,Nintendo
+N64,release,2000
+PS,belongs,Sony Computer Entertainment
+PS,release,1998
+XB,belongs,Microsoft Game Studios
+XB,release,2002
+PC,belongs,Microsoft Game Studios
+PC,release,1960
+2600,belongs,Nintendo
+2600,release,2000
+PSP,belongs,Nintendo
+PSP,release,2006

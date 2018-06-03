@@ -142,7 +142,7 @@ class Grafo:
         for query in queries:
             bindings += self.query(query)
         for b in bindings:
-            new_triples = rule.makeTriples(b['id'], b['plat']);
+            new_triples = rule.get_inference_triples(b['id'], b['plat']);
             for s, p, o in new_triples:
                 self.add(s, p, o)
 
@@ -152,7 +152,7 @@ class Grafo:
         for query in queries:
             bindings += self.query(query)
         for b in bindings:
-            new_triples = rule.makeTriples(b['id'], b['NA'], b['EU'], b['JP'], b['Other']);
+            new_triples = rule.get_inference_triples(b['id'], b['NA'], b['EU'], b['JP'], b['Other']);
             for s, p, o in new_triples:
                 self.add(s, p, o)
 
@@ -162,7 +162,7 @@ class Grafo:
         for query in queries:
             bindings += self.query(query)
         for b in bindings:
-            new_triples = rule.makeTriples(b['id'], b['id2'], b['year'], b['year2']);
+            new_triples = rule.get_inference_triples(b['id'], b['id2'], b['year'], b['year2']);
             for s, p, o in new_triples:
                 self.add(s, p, o)
 

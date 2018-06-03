@@ -1,12 +1,11 @@
 from django.template import loader
 from django.http import HttpResponse
-
 from console_type_rule import consoleTypeRule
 from grafo import Grafo
 from graphviz import Source
+from sparql_queries import SparqlQueries
 import re
 import os
-
 from main_region_rule import mainRegionRule
 from later_release_rule import laterReleaseRule
 
@@ -14,6 +13,7 @@ from later_release_rule import laterReleaseRule
 os.environ["PATH"] += os.pathsep + '/usr/local/lib/python3.6/dist-packages/graphviz'
 
 _graph = Grafo()
+_sparql = SparqlQueries()
 triples_platform = []
 
 
@@ -52,18 +52,14 @@ def file_status(request):
 
 
 def list_all_tuples(request):
-    context = manage_file(request)
     template = loader.get_template('all_tuples.html')
-    context.update({
-        'triples': _graph.triples(None, None, None)
-    })
+    context = {'triples': _sparql.list_all_triples()}
     return HttpResponse(template.render(context, request))
 
 
 def check_games_list(request):
-    context = manage_file(request)
     template = loader.get_template('games_list.html')
-    triples = _graph.triples(None, 'Name', None)
+    triples = _sparql.check_games_list()
     if 'download_graph' in request.POST:
         g = Source(triples2dot(triples), "games_list.gv", "dotout", "pdf", "neato")
         g.render(view=True)
@@ -72,7 +68,7 @@ def check_games_list(request):
             response['content_type'] = 'application/pdf'
             response['Content-Disposition'] = 'attachment;filename=games_list.pdf'
             return response
-    context.update({'triples': triples})
+    context = {'triples': triples}
     return HttpResponse(template.render(context, request))
 
 
@@ -83,9 +79,9 @@ def check_games_platform(request):
         platform = request.POST['platform']
         if platform:
             triples_platform.clear()
-            query = _graph.query([('?id', 'Name', '?games'), ('?id', 'Platform', platform)])
-            for q in query:
-                triples_platform.append((q['id'], 'Name', q['games']))
+            query = _sparql.check_games_platform(platform)
+            for sub, pred, obj in query:
+                triples_platform.append((sub, pred, obj))
             context.update({
                 'error': False,
                 'triples': triples_platform
@@ -109,61 +105,44 @@ def check_games_platform(request):
 
 
 def add_new_game_record(request):
-    context = manage_file(request)
+    context = {'predicates': _sparql.get_all_predicates()}
     template = loader.get_template('add_new_game.html')
     if ('subject' and 'predicate' and 'object') in request.POST:
         sub = request.POST['subject']
         pred = request.POST['predicate']
         obj = request.POST['object']
         if sub and pred and obj:
-            if len(_graph.triples(sub, pred, obj)) > 0:
-                context.update({
-                    'error': True,
-                    'message': 'Tuple already exists'
-                })
+            if _sparql.triple_already_exists(sub, pred):
+                context.update({'error': True, 'message': 'Triple already exists'})
             else:
-                _graph.add(sub, pred, obj)
-                context.update({
-                    'error': False,
-                    'message': 'Triple successfully added'
-                })
+                _sparql.add_new_game_record(sub, pred, obj)
+                context.update({'error': False, 'message': 'Triple successfully added'})
         else:
-            context.update({
-                'error': True,
-                'message': 'Fill all the fields'
-            })
+            context.update({'error': True, 'message': 'Fill all the fields'})
     else:
         context.update({'error': False})
     return HttpResponse(template.render(context, request))
 
 
 def remove_game(request):
-    context = manage_file(request)
     template = loader.get_template('remove_game.html')
     if ('subject' and 'predicate' and 'object') in request.POST:
         sub = request.POST['subject']
         pred = request.POST['predicate']
         obj = request.POST['object']
         if sub and pred and obj:
-            if sub == 'None':
+            if sub.lower() == 'none':
                 sub = None
-            if pred == 'None':
+            if pred.lower() == 'none':
                 pred = None
-            if obj == 'None':
+            if obj.lower() == 'none':
                 obj = None
-            number = len(_graph.triples(sub, pred, obj))
-            _graph.remove(sub, pred, obj)
-            context.update({
-                'error': False,
-                'message': str(number) + ' tuples were removed'
-            })
+            number = _sparql.remove_game_record(sub, pred, obj)
+            context = {'error': False, 'message': str(number) + ' triples were removed'}
         else:
-            context.update({
-                'error': True,
-                'message': 'Fill all the fields'
-            })
+            context = {'error': True, 'message': 'Fill all the fields'}
     else:
-        context.update({'error': False})
+        context = {'error': False}
     return HttpResponse(template.render(context, request))
 
 
@@ -181,11 +160,13 @@ def add_console_inference(request):
     else:
         triples_platform.clear()
         cType = consoleTypeRule()
-        _graph.applyConsoleTypeInference(cType)
-        triples = _graph.triples(None, 'type', None)
-        for sub, pred, obj in triples:
-            triples_platform.append((sub, pred, obj))
-        context.update({'triples': triples})
+        triples = cType.get_inference_triples()
+        _sparql.insert_inferences(triples)
+        for triple in triples.split('\n'):
+            triple = triple.split(' ')
+            if len(triple) >= 3:
+                triples_platform.append((triple[0], triple[1], triple[2]))
+        context.update({'triples': triples_platform})
         return HttpResponse(template.render(context, request))
 
 
@@ -203,11 +184,13 @@ def add_region_inference(request):
     else:
         triples_platform.clear()
         rType = mainRegionRule()
-        _graph.applyMainRegionInference(rType)
-        triples = _graph.triples(None, 'Main Region', None)
-        for sub, pred, obj in triples:
-            triples_platform.append((sub, pred, obj))
-        context.update({'triples': triples})
+        triples = rType.get_inference_triples()
+        _sparql.insert_inferences(triples)
+        for triple in triples.split('\n'):
+            triple = triple.split(' ')
+            if len(triple) >= 3:
+                triples_platform.append((triple[0], triple[1], triple[2]))
+        context.update({'triples': triples_platform})
         return HttpResponse(template.render(context, request))
 
 
@@ -225,15 +208,11 @@ def add_release_inference(request):
     else:
         triples_platform.clear()
         lType = laterReleaseRule()
-        _graph.applyReleaseYearInference(lType)
-        triples = []
-        for triple in _graph.triples(None, 'Earlier', None):
-            triples.append(triple)
-        for triple in _graph.triples(None, 'Later', None):
-            triples.append(triple)
-        for triple in _graph.triples(None, 'Same', None):
-            triples.append(triple)
-        for sub, pred, obj in triples:
-            triples_platform.append((sub, pred, obj))
-        context.update({'triples': triples})
+        triples = lType.get_inference_triples()
+        _sparql.insert_inferences(triples)
+        for triple in triples.split('\n'):
+            triple = triple.split(' ')
+            if len(triple) >= 3:
+                triples_platform.append((triple[0], triple[1], triple[2]))
+        context.update({'triples': triples_platform})
         return HttpResponse(template.render(context, request))

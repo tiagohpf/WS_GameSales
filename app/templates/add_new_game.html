@@ -21,8 +21,12 @@
                     </div>
                     <div class="form-group">
                         <label>Predicate</label>
-                        <input class="form-control" type="text" name="predicate"
-                               placeholder="Enter Predicate">
+
+                        <select class="form-control" name="predicate">
+                            {% for pred in predicates %}
+                                <option>{{ pred }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Object</label>

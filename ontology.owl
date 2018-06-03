@@ -1,0 +1,67 @@
+<rdf:RDF xmlns:owl ="http://www.w3.org/2002/07/owl#"
+	 xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	 xmlns:xsd ="http://www.w3.org/2001/XMLSchema#">
+
+	<owl:Class rdf:about="http://www.games.com/class/Id"/>
+	<owl:Class rdf:about="http://www.games.com/class/Platform"/>
+	<owl:Class rdf:about="http://www.games.com/class/Publisher"/>
+
+	<owl:ObjectProperty rdf:about="http://www.games.com/pred/belongs">
+	 <rdfs:domain rdf:resource="http://www.games.com/class/Platform"/>
+         <rdfs:range rdf:resource="http://www.games.com/class/Publisher"/>
+    	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:about="http://www.games.com/pred/platform">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/> 
+	 <rdfs:range rdf:resource="http://www.games.com/class/Platform"/> 
+    	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:about="http://www.games.com/pred/publisher">
+	 <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.games.com/class/Publisher"/>
+    	</owl:ObjectProperty>
+
+    	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/na_sales">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/eu_sales">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/jp_sales">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/other_sales">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/global_sales">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/release">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Platform"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/name">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    	</owl:DatatypeProperty>
+
+	<owl:DatatypeProperty rdf:about="http://www.games.com/pred/year">
+         <rdfs:domain rdf:resource="http://www.games.com/class/Id"/>
+         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    	</owl:DatatypeProperty>
+
+
+</rdf:RDF>
+

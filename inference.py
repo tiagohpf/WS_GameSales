@@ -1,7 +1,4 @@
 class InferenceRule:
 
-    def getQueries(self):
-        return None
-
-    def makeTriples(self, binding):
-        return self._maketriples(**binding)
+    def get_inference_triples(self, binding):
+        return self.get_inference_triples(**binding)

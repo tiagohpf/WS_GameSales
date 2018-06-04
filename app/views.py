@@ -32,22 +32,9 @@ def triples2dot(triples):
 
 
 # Create your views here.
-def manage_file(request):
-    context = {}
-    if 'load_file' in request.POST and len(request.POST['load_file']) > 0:
-        file = request.POST['load_file']
-        _graph.load('clean_data/' + file)
-    elif 'save_file' in request.POST:
-        file = request.POST['save_file']
-        if file:
-            _graph.save('clean_data/' + file)
-    else:
-        context = {'save_error': False}
-    return context
-
 
 def file_status(request):
-    context = manage_file(request)
+    context = {}
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context, request))
 
@@ -76,7 +63,6 @@ def check_games_list(request):
 
 
 def check_games_platform(request):
-    context = manage_file(request)
     template = loader.get_template('games_platform.html')
     if 'platform' in request.POST:
         platform = request.POST['platform']
@@ -85,15 +71,9 @@ def check_games_platform(request):
             query = _sparql.check_games_platform(platform)
             for sub, pred, obj in query:
                 triples_platform.append((sub, pred, obj))
-            context.update({
-                'error': False,
-                'triples': triples_platform
-            })
+            context = {'error': False, 'triples': triples_platform}
         else:
-            context.update({
-                'error': True,
-                'message': 'Insert the platform'
-            })
+            context = {'error': True, 'message': 'Insert the platform'}
     elif 'download_graph' in request.POST:
         g = Source(triples2dot(triples_platform), "games_platform.gv", "dotout", "pdf", "neato")
         g.render(view=True)
@@ -103,7 +83,7 @@ def check_games_platform(request):
             response['Content-Disposition'] = 'attachment;filename=games_platform.pdf'
             return response
     else:
-        context.update({'error': False})
+        context = {'error': False}
     return HttpResponse(template.render(context, request))
 
 
@@ -150,7 +130,6 @@ def remove_game(request):
 
 
 def add_console_inference(request):
-    context = manage_file(request)
     template = loader.get_template('console_type_inference.html')
     if 'download_graph' in request.POST:
         g = Source(triples2dot(triples_platform), "console_inference.gv", "dotout", "pdf", "neato")
@@ -169,12 +148,11 @@ def add_console_inference(request):
             triple = triple.split(' ')
             if len(triple) >= 3:
                 triples_platform.append((triple[0], triple[1], triple[2]))
-        context.update({'triples': triples_platform})
+        context = {'triples': triples_platform}
         return HttpResponse(template.render(context, request))
 
 
 def add_region_inference(request):
-    context = manage_file(request)
     template = loader.get_template('main_region_inference.html')
     if 'download_graph' in request.POST:
         g = Source(triples2dot(triples_platform), "region_inference.gv", "dotout", "pdf", "neato")
@@ -193,12 +171,11 @@ def add_region_inference(request):
             triple = triple.split(' ')
             if len(triple) >= 3:
                 triples_platform.append((triple[0], triple[1], triple[2]))
-        context.update({'triples': triples_platform})
+        context = {'triples': triples_platform}
         return HttpResponse(template.render(context, request))
 
 
 def add_release_inference(request):
-    context = manage_file(request)
     template = loader.get_template('release_year_inference.html')
     if 'download_graph' in request.POST:
         g = Source(triples2dot(triples_platform), "release_year_inference.gv", "dotout", "pdf", "neato")
@@ -217,7 +194,7 @@ def add_release_inference(request):
             triple = triple.split(' ')
             if len(triple) >= 3:
                 triples_platform.append((triple[0], triple[1], triple[2]))
-        context.update({'triples': triples_platform})
+        context = {'triples': triples_platform}
         return HttpResponse(template.render(context, request))
 
 

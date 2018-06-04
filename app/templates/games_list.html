@@ -38,10 +38,11 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% load filters %}
                     {% for sub, pred, obj in triples %}
                         <tr>
-                            <td about="http://www.games.com/entity/{{ sub }}">{{ sub }}</td>
-                            <td property="pred:{{ pred }}">{{ pred }}</td>
+                            <td about="http://www.games.com/entity/{{ sub }}">{{ sub|format_string }}</td>
+                            <td property="pred:{{ pred }}">{{ pred|format_string }}</td>
                             <td>{{ obj }}</td>
                         </tr>
                     {% endfor %}

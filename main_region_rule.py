@@ -35,7 +35,7 @@ class mainRegionRule(InferenceRule):
             EU = float(result['e']['value'])
             JP = float(result['j']['value'])
             OT = float(result['o']['value'])
-            region = {'NorthAmerica': NA, 'Europe': EU, 'Japan': JP, 'Others': OT}
+            region = {'North_America': NA, 'Europe': EU, 'Japan': JP, 'Others': OT}
             max_value = max(region, key=region.get)
             results += sub + ' Main_Region ' + max_value + ' .\n'
         return results

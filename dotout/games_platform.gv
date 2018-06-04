@@ -1,13 +1,19 @@
  
         graph "grafo" { 
         overlap = "scale"; 
-        17 -- GrandTheftAutoV [label=Platform]
-35 -- CallOfDutyBlackOpsIi [label=Platform]
-38 -- CallOfDutyModernWarfare3 [label=Platform]
-41 -- CallOfDutyBlackOps [label=Platform]
-55 -- GranTurismo5 [label=Platform]
-56 -- CallOfDutyModernWarfare2 [label=Platform]
-57 -- GrandTheftAutoIv [label=Platform]
-68 -- CallOfDutyGhosts [label=Platform]
-83 -- FifaSoccer13 [label=Platform]
+        1 -- WiiSports [label=Platform]
+3 -- MarioKartWii [label=Platform]
+4 -- WiiSportsResort [label=Platform]
+8 -- WiiPlay [label=Platform]
+9 -- NewSuperMarioBrosWii [label=Platform]
+14 -- WiiFit [label=Platform]
+15 -- WiiFitPlus [label=Platform]
+40 -- SuperSmashBrosBrawl [label=Platform]
+49 -- SuperMarioGalaxy [label=Platform]
+61 -- JustDance3 [label=Platform]
+69 -- JustDance2 [label=Platform]
+79 -- WiiParty [label=Platform]
+81 -- MarioParty8 [label=Platform]
+86 -- MarioSonicAtTheOlympicGames [label=Platform]
+92 -- SuperMarioGalaxy2 [label=Platform]
 }

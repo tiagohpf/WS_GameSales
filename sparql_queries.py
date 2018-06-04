@@ -46,9 +46,9 @@ class SparqlQueries():
         res = json.loads(res)
         triples = []
         for e in res['results']['bindings']:
-            sub = e['s']['value'].replace(self.baseEntity, '').title()
-            pred = 'Name'
-            obj = e['o']['value'].replace(self.baseEntity, '').title()
+            sub = e['s']['value']
+            pred = 'name'
+            obj = e['o']['value']
             triples.append((sub, pred, obj))
         return triples
 
@@ -68,9 +68,9 @@ class SparqlQueries():
         res = json.loads(res)
         triples = []
         for e in res['results']['bindings']:
-            sub = e['s']['value'].replace(self.baseEntity, '').title()
-            pred = 'Platform'
-            obj = e['o']['value'].replace(self.baseEntity, '').title()
+            sub = e['s']['value']
+            pred = 'platform'
+            obj = e['o']['value']
             triples.append((sub, pred, obj))
         return triples
 

@@ -30,7 +30,7 @@ class consoleTypeRule(InferenceRule):
             sub = result['s']['value'].replace('http://www.games.com/entity/', '')
             obj = result['o']['value'].replace('http://www.games.com/entity/', '')
             if obj == 'ds' or obj == 'gb' or obj == 'gba' or obj == 'psp':
-                results += sub + ' ConsoleType ' + 'Portable .\n'
+                results += sub + ' Console_Type ' + 'Portable .\n'
             else:
-                results += sub + ' ConsoleType ' + 'Console .\n'
+                results += sub + ' Console_Type ' + 'Console .\n'
         return results

@@ -21,10 +21,10 @@
                     </div>
                     <div class="form-group">
                         <label>Predicate</label>
-
+                        {% load filters %}
                         <select class="form-control" name="predicate">
                             {% for pred in predicates %}
-                                <option>{{ pred }}</option>
+                                <option>{{ pred|format_string }}</option>
                             {% endfor %}
                         </select>
                     </div>

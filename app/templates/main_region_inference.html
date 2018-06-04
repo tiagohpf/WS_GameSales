@@ -40,8 +40,8 @@
                     <tbody>
                     {% for sub, pred, obj in triples %}
                         <tr>
-                            <td>{{ sub }}</td>
-                            <td>{{ pred }}</td>
+                            <td about="http://www.games.com/entity/{{ sub }}">{{ sub }}</td>
+                            <td property="pred:{{ pred }}">{{ pred }}</td>
                             <td>{{ obj }}</td>
                         </tr>
                     {% endfor %}

@@ -1,6 +1,13 @@
  
         graph "grafo" { 
         overlap = "scale"; 
-        1 -- WiiSports [label=Name]
-3 -- MarioKartWii [label=Name]
+        17 -- GrandTheftAutoV [label=Platform]
+35 -- CallOfDutyBlackOpsIi [label=Platform]
+38 -- CallOfDutyModernWarfare3 [label=Platform]
+41 -- CallOfDutyBlackOps [label=Platform]
+55 -- GranTurismo5 [label=Platform]
+56 -- CallOfDutyModernWarfare2 [label=Platform]
+57 -- GrandTheftAutoIv [label=Platform]
+68 -- CallOfDutyGhosts [label=Platform]
+83 -- FifaSoccer13 [label=Platform]
 }

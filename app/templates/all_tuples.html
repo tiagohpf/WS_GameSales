@@ -25,11 +25,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for sub, pred, obj in triples %}
+                    {% for sub, pred, obj, obj_type in tuples %}
                         <tr>
-                            <td>{{ sub }}</td>
-                            <td>{{ pred }}</td>
-                            <td>{{ obj }}</td>
+                            <td about="http://www.games.com/entity/{{ sub }}">{{ sub }}</td>
+                            {% ifequal obj_type 'entity' %}
+                                    <td rel="pred:{{ pred }}">{{ pred }}</td>
+                                    <td about="http://www.games.com/entity/{{ obj }}">{{ obj }}</td>
+                            {% else %}
+                                <td property="pred:{{ pred }}">{{ pred }}</td>
+                                <td>{{ obj }}</td>
+                            {% endifequal %}
                         </tr>
                     {% endfor %}
                     </tbody>

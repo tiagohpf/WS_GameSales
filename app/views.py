@@ -56,7 +56,6 @@ def list_all_tuples(request):
     template = loader.get_template('all_tuples.html')
     tuples = _sparql.list_all_triples()
     tuples = get_objects_type(tuples)
-    tuples = parse_values_of_triples(tuples)
     context = {'tuples': tuples}
     return HttpResponse(template.render(context, request))
 
@@ -229,17 +228,4 @@ def get_objects_type(triples):
             res.append((sub, pred, obj, 'entity'))
         else:
             res.append((sub, pred, obj, 'literal'))
-    return res
-
-
-def parse_values_of_triples(tuples):
-    res = []
-    for sub, pred, obj, obj_type in tuples:
-        sub_res = sub.replace(baseEntity, '').replace('_', ' ').title()
-        pred_res = pred.replace(baseProperty, '').replace('_', ' ').title()
-        if baseEntity in obj:
-            obj_res = obj.replace(baseEntity, '').replace('_', ' ').title()
-            res.append((sub_res, pred_res, obj_res, obj_type))
-        else:
-            res.append((sub_res, pred_res, obj, obj_type))
     return res

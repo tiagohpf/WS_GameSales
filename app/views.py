@@ -40,7 +40,7 @@ def file_status(request):
 
 
 def list_all_tuples(request):
-    template = loader.get_template('all_tuples.html')
+    template = loader.get_template('all_triples.html')
     tuples = _sparql.list_all_triples()
     tuples = get_objects_type(tuples)
     context = {'tuples': tuples}

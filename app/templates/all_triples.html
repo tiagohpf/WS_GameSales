@@ -33,7 +33,7 @@
                                     <td rel="pred:{{ pred }}">{{ pred|format_string}}</td>
                                     <td about="http://www.games.com/entity/{{ obj }}">{{ obj|format_string}}</td>
                             {% else %}
-                                <td rel="pred:{{ pred }}">{{ pred|format_string}}</td>
+                                <td property="pred:{{ pred }}">{{ pred|format_string}}</td>
                                 <td>{{ obj|format_string }}</td>
                             {% endifequal %}
                         </tr>
